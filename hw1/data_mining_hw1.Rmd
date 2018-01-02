@@ -1,0 +1,59 @@
+---
+title: "Data Mining HW1"
+author: "Salem Marrero"
+date: "1/2/2018"
+output: html_document
+---
+
+##Problem 1
+
+```{r}
+#setwd("~/GitHub/data-mining/hw1/")
+load("hw1prob1.Rdata")
+```
+
+####A
+
+First normalize the documents by their total word count, and then apply IDF weighting
+to the words. Save this matrix as dtm1. Now reverse the order: first apply IDF weighting
+to the words, then normalize the documents by their total word count, and save this matrix
+as dtm2. Are dtm1 and dtm2 different? Explain why you think they should or shouldn’t be
+different.
+
+
+```{r}
+dtm1 = dtm/rowSums(dtm)
+idf1 = log(nrow(dtm1)/colSums(dtm1 != 0))
+for (doc in 1:nrow(dtm1)){
+  dtm1[doc,] = dtm1[doc,] * idf1
+}
+
+dtm2 = dtm
+idf2 = log(nrow(dtm2)/colSums(dtm2 != 0))
+for (doc in 1:nrow(dtm2)){
+  dtm2[doc,] = dtm2[doc,] * idf2
+}
+dtm2 = dtm2/rowSums(dtm2)
+```
+
+
+```{r}
+rowSums(dtm1)
+rowSums(dtm2)
+```
+
+dtm1 had IDF applied after row normailization, so its rows no longer sum to 1.
+
+####B
+
+We’re going to forgo IDF weighting with such a small collection (8 documents). Normalize
+the documents by their total word count, and call this matrix dtm3. According to
+this document-term matrix, which document is closest (measured in Euclidean distance) to
+the document named “tmnt mike”?
+
+```{r}
+dtm3 = dtm/rowSums(dtm)
+###currently incomplete 
+```
+
+
