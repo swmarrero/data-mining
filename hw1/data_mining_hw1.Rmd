@@ -54,6 +54,19 @@ the document named “tmnt mike”?
 ```{r}
 dtm3 = dtm/rowSums(dtm)
 ###currently incomplete 
+euclidean_distances = list()
+for (i in 1:nrow(dtm3)){
+  euclidean_distances[row.names(dtm3)[i]] = sqrt(sum((dtm3["tmnt mike",] - dtm3[i,])**2))
+}
+euclidean_distances
 ```
 
+tmnt raph has the closest Euclidean Distance to tmnt mike. 
 
+####C
+
+Sticking with the normalized matrix dtm3, compute the distance between each pair of
+documents using the function dist. Now run hierarchical agglomerative clustering, both
+with single linkage and complete linkage, using the function hclust. Plot the resulting
+dendograms for both linkages. If you had to split the documents into 2 groups, which
+linkage do you think gives a more reasonable clustering?
